@@ -24,7 +24,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.common.models.Problem
+import com.example.common.models.home.reportproblem.Problem
 import com.example.common.utils.TAG
 import com.example.common.utils.sdk29AndUp
 import com.example.hakaton.R

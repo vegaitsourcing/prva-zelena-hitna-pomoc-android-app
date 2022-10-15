@@ -1,7 +1,7 @@
 package com.example.hakaton.ui.home.categories
 
 import androidx.lifecycle.ViewModel
-import com.example.common.models.Category
+import com.example.common.models.home.categories.Category
 
 class CategoryViewModel : ViewModel() {
 

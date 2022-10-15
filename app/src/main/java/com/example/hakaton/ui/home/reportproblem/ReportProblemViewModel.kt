@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.common.models.Problem
+import com.example.common.models.home.reportproblem.Problem
 import com.example.common.utils.DataState
 import com.example.common.utils.TAG
 import com.example.domain.home.reportproblem.ProblemRepository

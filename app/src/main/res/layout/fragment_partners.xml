@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.partners.PartnersFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.partners.PartnersFragment"
+    android:padding="20sp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/text_partners_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/partners_fragment_title"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_title_size"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/text_partners_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_partners_title"
+        android:layout_marginTop="10sp"
+        android:text="Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor."
+        android:textStyle="bold"
+        android:textColor="@color/text_desc_color"
+        android:textSize="@dimen/text_description_size"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_partners"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_partners_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20sp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

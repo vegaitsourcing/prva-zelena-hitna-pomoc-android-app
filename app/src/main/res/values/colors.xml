@@ -13,4 +13,5 @@
     <color name="text_desc_color">#3B86A7</color>
     <color name="category_item_border_color">#BBCF44</color>
     <color name="category_item_background_color">#ffffff</color>
+    <color name="contacts_text_color">#992F3742</color>
 </resources>

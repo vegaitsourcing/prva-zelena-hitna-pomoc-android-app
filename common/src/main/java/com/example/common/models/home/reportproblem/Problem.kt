@@ -1,4 +1,4 @@
-package com.example.common.models
+package com.example.common.models.home.reportproblem
 
 data class Problem(
     val id: String,

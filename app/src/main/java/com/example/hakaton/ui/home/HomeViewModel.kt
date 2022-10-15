@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.common.models.Category
+import com.example.common.models.home.categories.Category
 import com.example.common.utils.DataState
 import com.example.common.utils.TAG
 import com.example.domain.home.categories.CategoryRepository
@@ -44,7 +44,6 @@ class HomeViewModel
     }
 
     init {
-        Log.d(TAG, "init")
         getCategories()
     }
 }

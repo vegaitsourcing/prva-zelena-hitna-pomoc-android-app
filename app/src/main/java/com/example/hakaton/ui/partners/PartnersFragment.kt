@@ -1,32 +1,60 @@
 package com.example.hakaton.ui.partners
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.hakaton.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hakaton.databinding.FragmentPartnersBinding
+import com.example.hakaton.ui.partners.adapter.PartnersAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PartnersFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = PartnersFragment()
-    }
+    private var _binding: FragmentPartnersBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var viewModel: PartnersViewModel
+    private val viewModel: PartnersViewModel by viewModels()
+
+    private val partnersAdapter: PartnersAdapter by lazy { PartnersAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_partners, container, false)
+        _binding = FragmentPartnersBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PartnersViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initAdapter()
+        loadPartnersData()
     }
 
+    private fun loadPartnersData() {
+        viewModel.partnerDetails.observe(viewLifecycleOwner) { partnerDetails->
+            partnerDetails?.let {
+                binding.textPartnersDescription.text = partnerDetails.description
+                partnersAdapter.differ.submitList(partnerDetails.listOfPartners)
+            }
+        }
+    }
+
+    private fun initAdapter() {
+        with(binding) {
+            recyclerPartners.apply {
+                layoutManager = LinearLayoutManager(requireActivity())
+                adapter = partnersAdapter
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -2,8 +2,12 @@ package com.example.firebase
 
 import android.net.Uri
 import android.util.Log
-import com.example.common.models.Category
-import com.example.common.models.Problem
+import com.example.common.models.contact.Contact
+import com.example.common.models.donation.Donation
+import com.example.common.models.home.categories.Category
+import com.example.common.models.home.reportproblem.Problem
+import com.example.common.models.news.News
+import com.example.common.models.partners.PartnerDetails
 import com.example.common.utils.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.GenericTypeIndicator
@@ -73,25 +77,57 @@ class FirebaseManager @Inject constructor() {
 
     suspend fun getNews() = flow {
         emit(DataState.Loading)
-        //emit(DataState.Success())
-        //emit(DataState.Error(it))
+        try {
+            val myQuery = database.child(FIREBASE_DATABASE_NEWS).get().await()
+            val value = myQuery.getValue(object :
+                GenericTypeIndicator<List<News>>() {})
+            value?.let { news ->
+                emit(DataState.Success(news))
+            }
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+        }
     }
 
     suspend fun getPartners() = flow {
         emit(DataState.Loading)
-        //emit(DataState.Success())
-        //emit(DataState.Error(it))
-    }
-
-    suspend fun getContactDetails() = flow {
-        emit(DataState.Loading)
-        //emit(DataState.Success())
-        //emit(DataState.Error(it))
+        try {
+            val myQuery = database.child(FIREBASE_DATABASE_PARTNERS).get().await()
+            val value = myQuery.getValue(object :
+                GenericTypeIndicator<PartnerDetails>() {})
+            value?.let { partner ->
+                emit(DataState.Success(partner))
+            }
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+        }
     }
 
     suspend fun getDonateDetails() = flow {
         emit(DataState.Loading)
-        //emit(DataState.Success())
-        //emit(DataState.Error(it))
+        try {
+            val myQuery = database.child(FIREBASE_DATABASE_DONATION).get().await()
+            val value = myQuery.getValue(object :
+                GenericTypeIndicator<Donation>() {})
+            value?.let { donation ->
+                emit(DataState.Success(donation))
+            }
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+        }
+    }
+
+    suspend fun getContactDetails() = flow {
+        emit(DataState.Loading)
+        try {
+            val myQuery = database.child(FIREBASE_DATABASE_CONTACTS).get().await()
+            val value = myQuery.getValue(object :
+                GenericTypeIndicator<Contact>() {})
+            value?.let { contact ->
+                emit(DataState.Success(contact))
+            }
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+        }
     }
 }

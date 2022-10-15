@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.common.models.Subcategory
+import com.example.common.models.home.categories.Subcategory
 import com.example.hakaton.databinding.ItemSubcategoryBinding
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.SubcategoryViewHolder>() {

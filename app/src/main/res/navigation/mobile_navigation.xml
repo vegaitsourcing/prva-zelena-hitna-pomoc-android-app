@@ -20,15 +20,19 @@
 
     <fragment
         android:id="@+id/navigation_partners"
-        android:name="com.example.hakaton.ui.news.NewsFragment"
-        android:label="@string/title_news"
+        android:name="com.example.hakaton.ui.partners.PartnersFragment"
+        android:label="@string/title_partners"
         tools:layout="@layout/fragment_partners" />
 
     <fragment
         android:id="@+id/navigation_news"
-        android:name="com.example.hakaton.ui.partners.PartnersFragment"
-        android:label="@string/title_partners"
-        tools:layout="@layout/fragment_news" />
+        android:name="com.example.hakaton.ui.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_navigation_news_to_fullNewsFragment"
+            app:destination="@id/fullNewsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/contactsFragment"
@@ -50,6 +54,9 @@
         <action
             android:id="@+id/action_reportProblemFragment_to_successfullyReportedFragment"
             app:destination="@id/successfullyReportedFragment" />
+        <action
+            android:id="@+id/action_reportProblemFragment_to_selectCategoryFragment"
+            app:destination="@id/selectCategoryFragment" />
     </fragment>
 
     <fragment
@@ -65,7 +72,25 @@
         tools:layout="@layout/fragment_category">
         <argument
             android:name="category"
-            app:argType="com.example.common.models.Category" />
+            app:argType="com.example.common.models.home.categories.Category" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectCategoryFragment"
+        android:name="com.example.hakaton.ui.home.reportproblem.categories.SelectCategoryFragment"
+        android:label="fragment_select_category"
+        tools:layout="@layout/fragment_select_category" >
+        <action
+            android:id="@+id/action_selectCategoryFragment_to_reportProblemFragment"
+            app:destination="@id/reportProblemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullNewsFragment"
+        android:name="com.example.hakaton.ui.news.fullnews.FullNewsFragment"
+        android:label="FullNewsFragment"
+        tools:layout="@layout/fragment_full_news">
+        <argument
+            android:name="news"
+            app:argType="com.example.common.models.news.News" />
     </fragment>
 
 </navigation>

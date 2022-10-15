@@ -51,5 +51,12 @@
     </string>
     <string name="no_storage_permission" translatable="false">Storage permission is required to load your photos from the gallery.\n\nPlease find this permission in the application settings and allow it.\n</string>
 
+    <string name="home_btn_news_read_more">Procitaj više</string>
+    <string name="news_title">Vesti</string>
+    <string name="partners_fragment_title">Naši partneri</string>
 
+    <string name="fragment_contact_title">Kontakt</string>
+    <string name="contact_phone_number">Broj telefona</string>
+    <string name="contact_email">Email</string>
+    <string name="contact_web">Web</string>
 </resources>

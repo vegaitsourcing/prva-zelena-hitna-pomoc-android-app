@@ -38,7 +38,7 @@ class CategoryFragment : Fragment() {
         initAdapter()
         val args: CategoryFragmentArgs by navArgs()
         args?.let {
-            it.category?.let { category->
+            it.category?.let { category ->
                 viewModel.category = category
                 categoryAdapter.differ.submitList(category.subcategories)
                 initViews()

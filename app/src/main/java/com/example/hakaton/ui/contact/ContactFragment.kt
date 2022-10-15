@@ -1,32 +1,48 @@
 package com.example.hakaton.ui.contact
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.hakaton.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.hakaton.databinding.FragmentContactBinding
 
 class ContactFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ContactFragment()
-    }
+    private var _binding: FragmentContactBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var viewModel: ContactViewModel
+    private val viewModel: ContactViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_contact, container, false)
+        _binding = FragmentContactBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadContactData()
     }
 
+    private fun loadContactData() {
+        viewModel.contactDetails.observe(viewLifecycleOwner){ contact->
+            binding.apply {
+                contact?.let {
+                    textContactDescription.text = contact.description
+                    textPhoneNumber.text = contact.phoneNumber
+                    textEmail.text = contact.phoneNumber
+                    textWebPage.text = contact.email
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

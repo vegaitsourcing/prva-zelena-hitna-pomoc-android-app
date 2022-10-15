@@ -1,6 +1,6 @@
 package com.example.domain.partners
 
-import com.example.common.models.Partner
+import com.example.common.models.partners.PartnerDetails
 import com.example.common.utils.DataState
 import com.example.firebase.FirebaseManager
 import kotlinx.coroutines.flow.Flow
@@ -10,5 +10,5 @@ class PartnersRepositoryImpl
 @Inject constructor(
     private val firebaseManager: FirebaseManager
 ) : PartnersRepository {
-    override suspend fun getPartners(): Flow<DataState<List<Partner>>> = firebaseManager.getPartners()
+    override suspend fun getPartners(): Flow<DataState<PartnerDetails>> = firebaseManager.getPartners()
 }
