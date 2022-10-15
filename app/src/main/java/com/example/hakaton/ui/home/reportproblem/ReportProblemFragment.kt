@@ -82,9 +82,8 @@ class ReportProblemFragment : Fragment() {
 
     private fun reportProblem() {
         binding.btnReportProblem.setOnClickListener {
-            //if (inputCheck()) viewModel.reportProblem(createProblem())
-            //else Toast.makeText(requireActivity(), getString(R.string.text_invalid_input), Toast.LENGTH_SHORT).show()\
-            view?.findNavController()?.navigate(ReportProblemFragmentDirections.actionReportProblemFragmentToSelectCategoryFragment())
+            if (inputCheck()) viewModel.reportProblem(createProblem())
+            else Toast.makeText(requireActivity(), getString(R.string.text_invalid_input), Toast.LENGTH_SHORT).show()
         }
     }
 
