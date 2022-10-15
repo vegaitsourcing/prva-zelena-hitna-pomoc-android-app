@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.common.models.home.categories.Category
+import com.example.hakaton.R
 import com.example.hakaton.databinding.ItemSelectCategoryBinding
 
 class SelectCategoryAdapter : RecyclerView.Adapter<SelectCategoryAdapter.CategoryViewHolder>() {
@@ -44,7 +46,13 @@ class SelectCategoryAdapter : RecyclerView.Adapter<SelectCategoryAdapter.Categor
         fun setData(category: Category) {
             binding.apply {
                 textCategoryName.text = category.name
-                //imageCategory.setImageURI(category.image)
+
+                Glide.with(imageCategory)
+                    .load(category.image)
+                    .placeholder(R.drawable.ic_thumb)
+                    .centerCrop()
+                    .into(imageCategory)
+
                 root.setOnClickListener {
                     onItemClickListener?.let { it(category) }
                 }

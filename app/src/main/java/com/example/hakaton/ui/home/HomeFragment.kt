@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.common.utils.NUM_OF_COLUMNS
+import com.example.hakaton.MainViewModel
 import com.example.hakaton.databinding.FragmentHomeBinding
 import com.example.hakaton.ui.home.adapter.HomeCategoryAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +20,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: HomeViewModel by viewModels()
+    //private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: MainViewModel by activityViewModels()
 
     private val categoryAdapter: HomeCategoryAdapter by lazy { HomeCategoryAdapter() }
 
@@ -48,7 +50,7 @@ class HomeFragment : Fragment() {
 
     private fun reportProblem() {
         binding.btnReportProblem.setOnClickListener {
-            view?.findNavController()?.navigate(HomeFragmentDirections.actionNavigationHomeToReportProblemFragment())
+            view?.findNavController()?.navigate(HomeFragmentDirections.actionNavigationHomeToReportProblemFragment(null))
         }
     }
 

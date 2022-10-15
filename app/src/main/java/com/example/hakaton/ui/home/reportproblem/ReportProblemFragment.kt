@@ -23,12 +23,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.common.models.home.reportproblem.Problem
 import com.example.common.utils.TAG
 import com.example.common.utils.sdk29AndUp
 import com.example.hakaton.R
 import com.example.hakaton.databinding.FragmentReportProblemBinding
+import com.example.hakaton.ui.home.categories.CategoryFragmentArgs
 import com.example.hakaton.ui.home.reportproblem.adapter.MediaFilesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -63,6 +65,14 @@ class ReportProblemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val args: ReportProblemFragmentArgs by navArgs()
+        args?.let {
+            it.category?.let { category ->
+                binding.etCategory.setText(category.name)
+            }
+        }
+
         initAdapter()
         reportProblem()
         observeReportStatus()
@@ -72,8 +82,9 @@ class ReportProblemFragment : Fragment() {
 
     private fun reportProblem() {
         binding.btnReportProblem.setOnClickListener {
-            if (inputCheck()) viewModel.reportProblem(createProblem())
-            else Toast.makeText(requireActivity(), getString(R.string.text_invalid_input), Toast.LENGTH_SHORT).show()
+            //if (inputCheck()) viewModel.reportProblem(createProblem())
+            //else Toast.makeText(requireActivity(), getString(R.string.text_invalid_input), Toast.LENGTH_SHORT).show()\
+            view?.findNavController()?.navigate(ReportProblemFragmentDirections.actionReportProblemFragmentToSelectCategoryFragment())
         }
     }
 

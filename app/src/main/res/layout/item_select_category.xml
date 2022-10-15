@@ -18,12 +18,13 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/rounded_button" />
+            android:background="@drawable/rounded_and_bordered_button" />
 
         <ImageView
             android:id="@+id/image_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_marginStart="20sp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/ic_launcher"/>
@@ -32,9 +33,13 @@
             android:id="@+id/text_category_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_centerInParent="true"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_description_size"
+            android:textColor="@color/text_desc_color"
+            android:layout_marginStart="10sp"
+            android:textSize="@dimen/text_select_category_size"
             android:textStyle="bold" />
 
     </RelativeLayout>

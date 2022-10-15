@@ -57,6 +57,10 @@
         <action
             android:id="@+id/action_reportProblemFragment_to_selectCategoryFragment"
             app:destination="@id/selectCategoryFragment" />
+        <argument
+            android:name="category"
+            app:nullable="true"
+            app:argType="com.example.common.models.home.categories.Category" />
     </fragment>
 
     <fragment
