@@ -22,7 +22,7 @@ class ReportProblemViewModel
     private val _problemReported = MutableLiveData<String?>()
     val problemReported: MutableLiveData<String?> get() = _problemReported
 
-    var images: ArrayList<Uri>? = ArrayList()
+    var mediaFiles: ArrayList<Uri> = ArrayList()
 
     fun reportProblem(problem: Problem) {
         viewModelScope.launch {
@@ -47,6 +47,6 @@ class ReportProblemViewModel
     }
 
     private fun uploadProblemMedia(problemId: String) {
-        repository.uploadImagesToStorage(images!![0], problemId = problemId) //optimizuj za listu!
+        repository.uploadImagesToStorage(mediaFiles[0], problemId = problemId) //optimizuj za listu!
     }
 }

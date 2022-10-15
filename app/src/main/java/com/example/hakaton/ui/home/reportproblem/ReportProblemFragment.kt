@@ -19,6 +19,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -30,7 +31,7 @@ import com.example.common.utils.TAG
 import com.example.common.utils.sdk29AndUp
 import com.example.hakaton.R
 import com.example.hakaton.databinding.FragmentReportProblemBinding
-import com.example.hakaton.ui.home.categories.CategoryFragmentArgs
+import com.example.hakaton.ui.home.reportproblem.adapter.IOnMediaFileClickListener
 import com.example.hakaton.ui.home.reportproblem.adapter.MediaFilesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -39,10 +40,9 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class ReportProblemFragment : Fragment() {
+class ReportProblemFragment : Fragment(), IOnMediaFileClickListener {
 
     private var _binding: FragmentReportProblemBinding? = null
     private val binding get() = _binding!!
@@ -52,7 +52,7 @@ class ReportProblemFragment : Fragment() {
     private var readPermissionGranted = false
     private var writePermissionGranted = false
 
-    private val mediaFilesAdapter: MediaFilesAdapter by lazy { MediaFilesAdapter() }
+    private var mediaFilesAdapter: MediaFilesAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -119,6 +119,7 @@ class ReportProblemFragment : Fragment() {
 
     private fun initAdapter() {
         with(binding) {
+            mediaFilesAdapter = MediaFilesAdapter(viewModel.mediaFiles, this@ReportProblemFragment)
             recyclerMediaFiles.apply {
                 layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
                 adapter = mediaFilesAdapter
@@ -126,14 +127,11 @@ class ReportProblemFragment : Fragment() {
         }
     }
 
-    val test: ArrayList<Uri> = ArrayList<Uri>()
-
     private fun storeMediaFile(uri: Uri) {
         viewModel.apply {
-            images?.add(uri)
-            test.add(uri)
-            Log.d("MartinDebug","images: $images")
-            mediaFilesAdapter.differ.submitList(test)
+            mediaFiles.add(uri)
+            binding.recyclerMediaFiles.visibility = View.VISIBLE
+            initAdapter()
         }
     }
 
@@ -146,6 +144,12 @@ class ReportProblemFragment : Fragment() {
                 openCamera()
             }
         }
+    }
+
+    override fun onMediaFileClick(position: Int, uri: Uri) {
+        viewModel.mediaFiles.remove(uri)
+        mediaFilesAdapter?.notifyDataSetChanged()
+        if (viewModel.mediaFiles.isEmpty()) binding.recyclerMediaFiles.visibility = View.GONE
     }
 
     private fun openGallery() {
