@@ -1,11 +1,14 @@
 package com.example.hakaton.ui.home.reportproblem
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.location.Geocoder
+import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -33,16 +36,27 @@ import com.example.hakaton.R
 import com.example.hakaton.databinding.FragmentReportProblemBinding
 import com.example.hakaton.ui.home.reportproblem.adapter.IOnMediaFileClickListener
 import com.example.hakaton.ui.home.reportproblem.adapter.MediaFilesAdapter
+import com.example.hakaton.util.LocaionUtil.DEFAULT_LAT
+import com.example.hakaton.util.LocaionUtil.DEFAULT_LNG
+import com.example.hakaton.util.LocaionUtil.REQUEST_CODE_LOCATION_PERMISSION
+import com.example.hakaton.util.LocaionUtil.hasLocationPermissions
+import com.example.hakaton.util.displayLocationSettingsRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.LatLng
+import com.vmadalin.easypermissions.EasyPermissions
+import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import dagger.hilt.android.AndroidEntryPoint
+import io.nlopez.smartlocation.SmartLocation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class ReportProblemFragment : Fragment(), IOnMediaFileClickListener {
+class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermissions.PermissionCallbacks {
 
     private var _binding: FragmentReportProblemBinding? = null
     private val binding get() = _binding!!
@@ -53,6 +67,9 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener {
     private var writePermissionGranted = false
 
     private var mediaFilesAdapter: MediaFilesAdapter? = null
+
+    private val location by lazy { LocationServices.getFusedLocationProviderClient(requireActivity()) }
+    private val geocoder by lazy { Geocoder(requireContext(), Locale.getDefault()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,6 +95,13 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener {
         observeReportStatus()
         addMediaFile()
         updateOrRequestPermissions()
+        setUpClickListeners()
+    }
+
+    private fun setUpClickListeners() {
+        binding.tilLocation.setEndIconOnClickListener {
+            requestLocationPermissions()
+        }
     }
 
     private fun reportProblem() {
@@ -248,6 +272,73 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener {
         if (!readPermissionGranted) {
             permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
+    }
+
+    private fun requestLocationPermissions() {
+        if (hasLocationPermissions(requireContext())) {
+            enableLocationServices()
+        } else {
+            EasyPermissions.requestPermissions(
+                this,
+                this.getString(R.string.enable_location),
+                REQUEST_CODE_LOCATION_PERMISSION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        }
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            SettingsDialog.Builder(requireContext()).build().show()
+        } else {
+            requestLocationPermissions()
+        }
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
+        requestLocationPermissions()
+        enableLocationServices()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
+
+    private fun enableLocationServices() {
+        if (SmartLocation.with(requireContext())
+                .location()
+                .state()
+                .locationServicesEnabled()
+                .not()
+        ) {
+            displayLocationSettingsRequest(99, requireActivity())
+        } else {
+            val location = getCurrentLocation()
+            val latLng = location?.let {
+                LatLng(it.latitude, it.longitude)
+            } ?: LatLng(DEFAULT_LAT, DEFAULT_LNG)
+            val addressList = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)[0]
+            val currentAddress = addressList.getAddressLine(0)
+            binding.etLocation.setText(currentAddress)
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getCurrentLocation() : Location? {
+        if (viewModel.currentLocation == null) {
+            lifecycleScope.launch {
+                location.lastLocation.addOnSuccessListener { location ->
+                    viewModel.currentLocation = location
+                }.await()
+            }
+        }
+        return viewModel.currentLocation
     }
 
     override fun onDestroyView() {

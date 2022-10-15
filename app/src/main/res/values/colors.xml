@@ -14,4 +14,8 @@
     <color name="category_item_border_color">#BBCF44</color>
     <color name="category_item_background_color">#ffffff</color>
     <color name="contacts_text_color">#992F3742</color>
+    <color name="text_color_primary">#FF000000</color>
+    <color name="text_color_secondary">#2F3742</color>
+    <color name="textInput_border_color">#707070</color>
+    <color name="icon_color">#1E6584</color>
 </resources>

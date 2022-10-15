@@ -1,150 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.home.reportproblem.ReportProblemFragment"
-    android:padding="20sp">
+    android:fillViewport="true"
+    tools:context=".ui.home.reportproblem.ReportProblemFragment">
 
-    <TextView
-        android:id="@+id/text_current_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/text_report_problem_title"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_current_date"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="@dimen/text_title_size"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:text="@string/text_report_problem" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        app:layout_constraintTop_toBottomOf="@id/text_report_problem_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="@string/et_hint_name"/>
-
-    <TextView
-        android:id="@+id/text_report_private"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_report_private"
-        app:layout_constraintTop_toTopOf="@id/checkbox_report_private"
-        app:layout_constraintBottom_toBottomOf="@id/checkbox_report_private"
-        app:layout_constraintEnd_toStartOf="@id/checkbox_report_private" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/checkbox_report_private"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/et_name"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_report_private"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="@string/et_hint_location"/>
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        app:layout_constraintTop_toBottomOf="@id/et_location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="@string/et_hint_category"/>
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        app:layout_constraintTop_toBottomOf="@id/et_category"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btn_open_gallery"
-        android:hint="@string/et_hint_description"/>
-
-    <TextView
-        android:id="@+id/text_add_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_report_problem_photo_video"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_open_gallery"
-        app:layout_constraintBottom_toBottomOf="@id/btn_open_gallery"
-        app:layout_constraintEnd_toStartOf="@id/btn_open_gallery"/>
-
-    <ImageView
-        android:id="@+id/btn_open_gallery"
-        android:layout_width="80sp"
-        android:layout_height="80sp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginEnd="10sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginBottom="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_open_camera"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_media_files"/>
-
-    <ImageView
-        android:id="@+id/btn_open_camera"
-        android:layout_width="80sp"
-        android:layout_height="80sp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="10sp"
-        android:layout_marginBottom="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_media_files"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_media_files"
-        android:layout_width="match_parent"
-        android:layout_height="40sp"
-        android:layout_marginBottom="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btn_report_problem"/>
-
-    <RelativeLayout
-        android:id="@+id/btn_report_problem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/rounded_button" />
+        android:padding="20sp">
 
         <TextView
+            android:id="@+id/text_current_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/home_btn_report_problem"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_title_size"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/text_report_problem_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_current_date"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/text_title_size"
+            android:textColor="@color/text_color_primary"
+            android:textStyle="bold"
+            android:text="@string/text_report_problem" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeColor="@color/textInput_border_color"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="filled"
+            android:hint="@string/et_hint_name"
+            app:hintTextColor="@color/text_color_secondary"
+            app:layout_constraintTop_toBottomOf="@id/text_report_problem_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bordered_textfield"
+                android:textColor="@color/text_color_primary"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_report_private"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_report_private"
+            android:textColor="@color/text_color_secondary"
+            app:layout_constraintTop_toTopOf="@id/checkbox_report_private"
+            app:layout_constraintBottom_toBottomOf="@id/checkbox_report_private"
+            app:layout_constraintEnd_toStartOf="@id/checkbox_report_private" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkbox_report_private"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/textInput_border_color"
+            app:layout_constraintTop_toBottomOf="@id/til_Name"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeColor="@color/textInput_border_color"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="filled"
+            android:hint="@string/et_hint_location"
+            app:hintTextColor="@color/text_color_secondary"
+            app:endIconDrawable="@drawable/location"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:endIconTintMode="multiply"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_report_private"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/text_color_primary"
+                android:background="@drawable/bordered_textfield"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:boxStrokeColor="@color/textInput_border_color"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="@android:color/transparent"
+            android:hint="@string/et_hint_category"
+            app:hintTextColor="@color/text_color_secondary"
+            app:endIconDrawable="@drawable/menu"
+            app:endIconMode="custom"
+            app:endIconTint="@null"
+            app:endIconTintMode="multiply"
+            app:layout_constraintTop_toBottomOf="@id/til_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_category"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/text_color_primary"
+                android:background="@drawable/bordered_textfield"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="top|start"
+            android:hint="@string/et_hint_description"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundMode="filled"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/textInput_border_color"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintTextColor="@color/text_color_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_category">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bordered_textfield"
+                android:gravity="top|start"
+                android:textColor="@color/text_color_primary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_add_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_report_problem_photo_video"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_open_gallery"
+            app:layout_constraintBottom_toBottomOf="@id/btn_open_gallery"
+            app:layout_constraintEnd_toStartOf="@id/btn_open_gallery"/>
+
+        <ImageView
+            android:id="@+id/btn_open_gallery"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/image"
+            app:layout_constraintEnd_toStartOf="@+id/btn_open_camera"
+            app:layout_constraintTop_toBottomOf="@+id/til_description" />
+
+        <ImageView
+            android:id="@+id/btn_open_camera"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/video"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_description" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_media_files"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/btn_report_problem"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_open_gallery" />
+
+        <RelativeLayout
+            android:id="@+id/btn_report_problem"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/rounded_button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/home_btn_report_problem"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_title_size"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
