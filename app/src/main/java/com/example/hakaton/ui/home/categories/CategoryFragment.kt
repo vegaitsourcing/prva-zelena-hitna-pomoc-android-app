@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -47,6 +48,15 @@ class CategoryFragment : Fragment() {
             }
         }
         openSubcategoryUrl()
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        binding.apply {
+            toolbar.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun openSubcategoryUrl() {

@@ -23,6 +23,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     }
 
     var differ = AsyncListDiffer(this, differCallback)
+    val originalList = mutableListOf<News>()
 
     override fun getItemCount(): Int {
         return differ.currentList.size
@@ -59,5 +60,17 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                     .into(imageNews)
             }
         }
+    }
+
+    fun filterList(filter: String) {
+        val filteredList = originalList.filter { news ->
+            news.title.lowercase().contains(filter.lowercase(), ignoreCase = true) or
+                    news.description.lowercase()
+                        .contains(filter.lowercase(), ignoreCase = true)
+        }
+        if (filter.isEmpty()) {
+            differ.submitList(originalList)
+        }
+        differ.submitList(filteredList)
     }
 }

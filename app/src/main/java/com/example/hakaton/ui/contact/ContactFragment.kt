@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.hakaton.databinding.FragmentContactBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,6 +31,15 @@ class ContactFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadContactData()
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        binding.apply {
+            toolbar.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun loadContactData() {
