@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.home.reportproblem.successfullyreported.SuccessfullyReportedFragment"
+    android:padding="20sp">
+
+    <TextView
+        android:id="@+id/text_current_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_successfully_reported_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_current_date"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/text_successfully_reported_title"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_title_size"/>
+
+    <TextView
+        android:id="@+id/text_successfully_reported_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/text_successfully_reported_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/text_successfully_reported_description"
+        android:textSize="@dimen/text_description_size"
+        android:textColor="@color/text_desc_color"/>
+
+    <ImageView
+        android:id="@+id/image_successfully_reported"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/text_successfully_reported_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@mipmap/ic_launcher"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

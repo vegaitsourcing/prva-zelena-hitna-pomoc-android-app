@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Hakaton</string>
+
+    <string name="title_home">Pocetna</string>
+    <string name="title_news">Vesti</string>
+    <string name="title_partners">Partneri</string>
+    <string name="title_donate">Doniraj</string>
+    <string name="title_contact">Kontakti</string>
+
+    <string name="home_main_title"><font color='#BBCF44'>ZELENI</font> KLJUČ</string>
+    <string name="home_main_description">Prijavite ekološki problem na pravom mestu sa pravim informacijama, u svakom trenutku kada vama zatreba.</string>
+    <string name="home_btn_report_problem">Prijavi problem</string>
+
+    <string name="home_categories_title">KATEGORIJE</string>
+    <string name="home_categories_description">Uz pomoć ove opcije, sve informacije i odgovore možete naći na jednom mestu, odakle ćete se uputiti na pravu adresu institucija koje su zadužene za ekološke pobleme i rešenja.</string>
+    <string name="home_category_water">Voda</string>
+    <string name="home_category_air">Vazduh</string>
+    <string name="home_category_forest">Šume</string>
+    <string name="home_category_trash">Otpad</string>
+    <string name="home_category_noise">Buka</string>
+    <string name="home_category_construction">Gradnjaa</string>
+
+    <string name="home_waste_title">ODLAGANJE OTPADA</string>
+    <string name="home_waste_maps">Vidi mape</string>
+
+    <string name="text_report_problem">Prijavi problem</string>
+    <string name="text_report_private">Želim da prijavim anonimno</string>
+    <string name="text_successfully_reported_title">Uspešno ste prijavili problem!</string>
+    <string name="text_successfully_reported_description">Vaša prijava je prosledjena zaduženoj instituciji. Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.</string>
+    <string name="et_hint_name">Ime i Prezime</string>a
+    <string name="et_hint_location">Lokacija problema koji prijavljujete</string>
+    <string name="et_hint_category">Kategorija</string>
+    <string name="et_hint_description">Opis</string>
+    <string name="text_report_problem_photo_video">Dodajte sliku ili snimak</string>
+    <string name="text_category_desc">Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor .</string>
+
+    <string name="text_invalid_input">Sva polja moraju biti popunjena"</string>
+
+    <string name="grant_permission">Grant Permission</string>
+
+    <string name="permission_denied" translatable="false">Permission denied</string>
+    <string name="goToSettings" translatable="false">Go To Settings</string>
+    <string name="yes" translatable="false">Yes</string>
+    <string name="no" translatable="false">No</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="permission_storage" translatable="false">Storage permission is required for the application to perform this action.\n\nWould you like to allow this permission?\n</string>
+    <string name="permission_storage_save_settings" translatable="false">Storage permission is required for the application to perform this action.\n\nPlease find this permission in the application settings and allow
+        it.\n
+    </string>
+    <string name="no_storage_permission" translatable="false">Storage permission is required to load your photos from the gallery.\n\nPlease find this permission in the application settings and allow it.\n</string>
+
+
+</resources>

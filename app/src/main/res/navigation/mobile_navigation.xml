@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.hakaton.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_reportProblemFragment"
+            app:destination="@id/reportProblemFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_partners"
+        android:name="com.example.hakaton.ui.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_partners" />
+
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.example.hakaton.ui.partners.PartnersFragment"
+        android:label="@string/title_partners"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.hakaton.ui.contact.ContactFragment"
+        android:label="fragment_contacts"
+        tools:layout="@layout/fragment_contact" />
+
+    <fragment
+        android:id="@+id/donateFragment"
+        android:name="com.example.hakaton.ui.donate.DonateFragment"
+        android:label="fragment_donate"
+        tools:layout="@layout/fragment_donate" />
+
+    <fragment
+        android:id="@+id/reportProblemFragment"
+        android:name="com.example.hakaton.ui.home.reportproblem.ReportProblemFragment"
+        android:label="fragment_report_problem"
+        tools:layout="@layout/fragment_report_problem" >
+        <action
+            android:id="@+id/action_reportProblemFragment_to_successfullyReportedFragment"
+            app:destination="@id/successfullyReportedFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/successfullyReportedFragment"
+        android:name="com.example.hakaton.ui.home.reportproblem.successfullyreported.SuccessfullyReportedFragment"
+        android:label="fragment_successfully_reported"
+        tools:layout="@layout/fragment_successfully_reported" />
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.hakaton.ui.home.categories.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category">
+        <argument
+            android:name="category"
+            app:argType="com.example.common.models.Category" />
+    </fragment>
+
+</navigation>
