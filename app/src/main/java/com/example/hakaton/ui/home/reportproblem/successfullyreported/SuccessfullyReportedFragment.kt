@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.hakaton.databinding.FragmentSuccessfullyReportedBinding
 
 class SuccessfullyReportedFragment : Fragment() {
@@ -18,6 +19,20 @@ class SuccessfullyReportedFragment : Fragment() {
     ): View? {
         _binding = FragmentSuccessfullyReportedBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        binding.apply {
+            toolbar.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     override fun onDestroyView() {

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hakaton.MainViewModel
 import com.example.hakaton.databinding.FragmentSelectCategoryBinding
@@ -35,6 +36,15 @@ class SelectCategoryFragment : Fragment() {
         initAdapter()
         loadCategories()
         selectCategory()
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        binding.apply {
+            toolbar.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun selectCategory() {

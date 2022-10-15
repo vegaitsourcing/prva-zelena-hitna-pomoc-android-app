@@ -13,3 +13,5 @@ const val STORAGE_PROBLEM_REPORT_IMAGES = "problemReports"
 const val NUM_OF_COLUMNS = 3
 
 const val TAG = "GreenDebug"
+
+const val KEY_HIDE_TOOLBAR = "HideToolbar"

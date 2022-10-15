@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hakaton.databinding.FragmentPartnersBinding
 import com.example.hakaton.ui.partners.adapter.PartnersAdapter
@@ -33,6 +34,13 @@ class PartnersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         loadPartnersData()
+        setUpClickListeners()
+    }
+
+    private fun setUpClickListeners() {
+        binding.toolbar.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun loadPartnersData() {
