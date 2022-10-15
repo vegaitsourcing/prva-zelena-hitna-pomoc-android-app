@@ -11,6 +11,7 @@ import com.example.common.utils.TAG
 import com.example.domain.home.categories.CategoryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,6 +23,8 @@ class MainViewModel
 
     private val _categories = MutableLiveData<List<Category>?>()
     val categories: LiveData<List<Category>?> get() = _categories
+
+    val showSplash = MutableLiveData(true)
 
     private fun getCategories() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -45,5 +48,9 @@ class MainViewModel
 
     init {
         getCategories()
+        viewModelScope.launch {
+            delay(1000)
+            showSplash.value = false
+        }
     }
 }
