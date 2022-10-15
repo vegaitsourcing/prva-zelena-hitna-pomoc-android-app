@@ -62,4 +62,5 @@
 
     <string name="fragment_donate_title">Doniraj</string>
     <string name="donate_bank_account_number">Broj našeg računa</string>
+    <string name="enable_location">Enable Location to use the app</string>
 </resources>

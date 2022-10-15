@@ -1,5 +1,6 @@
 package com.example.hakaton.ui.home.reportproblem
 
+import android.location.Location
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +22,7 @@ class ReportProblemViewModel
 
     private val _problemReported = MutableLiveData<String?>()
     val problemReported: MutableLiveData<String?> get() = _problemReported
+    var currentLocation: Location? = null
 
     var mediaFiles: ArrayList<Uri> = ArrayList()
 
