@@ -14,7 +14,9 @@ import com.bumptech.glide.Glide
 import com.example.hakaton.R
 import com.example.hakaton.databinding.FragmentCategoryBinding
 import com.example.hakaton.ui.home.categories.adapter.CategoryAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CategoryFragment : Fragment() {
 
     private var _binding: FragmentCategoryBinding? = null

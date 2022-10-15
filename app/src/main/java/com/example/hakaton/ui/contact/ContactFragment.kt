@@ -1,5 +1,7 @@
 package com.example.hakaton.ui.contact
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.hakaton.databinding.FragmentContactBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ContactFragment : Fragment() {
 
     private var _binding: FragmentContactBinding? = null
@@ -32,10 +36,12 @@ class ContactFragment : Fragment() {
         viewModel.contactDetails.observe(viewLifecycleOwner){ contact->
             binding.apply {
                 contact?.let {
-                    textContactDescription.text = contact.description
-                    textPhoneNumber.text = contact.phoneNumber
-                    textEmail.text = contact.phoneNumber
-                    textWebPage.text = contact.email
+                    textContactDescription.text = "${textContactDescription.text}: ${contact.description}"
+                    textPhoneNumber.text = "${textPhoneNumber.text}: ${contact.phoneNumber}"
+                    textEmail.text = "${textEmail.text}: ${contact.email}"
+                    textWebPage.text = "${textWebPage.text}: ${contact.webAddress}"
+                    btnInstagram.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.instagramProfile))) }
+                    btnInstagram.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.facebookProfile))) }
                 }
             }
         }

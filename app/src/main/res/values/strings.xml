@@ -59,4 +59,7 @@
     <string name="contact_phone_number">Broj telefona</string>
     <string name="contact_email">Email</string>
     <string name="contact_web">Web</string>
+
+    <string name="fragment_donate_title">Doniraj</string>
+    <string name="donate_bank_account_number">Broj našeg računa</string>
 </resources>

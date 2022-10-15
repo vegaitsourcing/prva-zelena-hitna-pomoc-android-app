@@ -1,32 +1,48 @@
 package com.example.hakaton.ui.donate
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.hakaton.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.hakaton.databinding.FragmentDonateBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DonateFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = DonateFragment()
-    }
+    private var _binding: FragmentDonateBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var viewModel: DonateViewModel
+    private val viewModel: DonateViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_donate, container, false)
+        _binding = FragmentDonateBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DonateViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadDonationData()
     }
 
+    private fun loadDonationData() {
+        viewModel.donateDetails.observe(viewLifecycleOwner){ donationDetails->
+            binding.apply {
+                donationDetails?.let {
+                    textDonateDescription.text = donationDetails.description
+                    textBankAccountNumber.text = "${textBankAccountNumber.text}: ${donationDetails.cardNumber} "
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

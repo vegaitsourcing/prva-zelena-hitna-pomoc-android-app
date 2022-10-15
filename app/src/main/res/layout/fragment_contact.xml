@@ -65,5 +65,24 @@
         android:textStyle="bold"
         android:textColor="@color/contacts_text_color"/>
 
+    <ImageView
+        android:id="@+id/btn_instagram"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="20sp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_facebook"
+        app:layout_constraintTop_toBottomOf="@id/text_web_page"/>
+
+    <ImageView
+        android:id="@+id/btn_facebook"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="20sp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintStart_toEndOf="@id/btn_instagram"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_web_page"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
