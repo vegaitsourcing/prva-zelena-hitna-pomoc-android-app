@@ -44,6 +44,7 @@ import com.example.hakaton.util.LocaionUtil.DEFAULT_LNG
 import com.example.hakaton.util.LocaionUtil.REQUEST_CODE_LOCATION_PERMISSION
 import com.example.hakaton.util.LocaionUtil.hasLocationPermissions
 import com.example.hakaton.util.displayLocationSettingsRequest
+import com.example.hakaton.util.hideKeyboard
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
 import com.vmadalin.easypermissions.EasyPermissions
@@ -306,7 +307,7 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
 
     private fun requestLocationPermissions() {
         if (hasLocationPermissions(requireContext())) {
-            enableLocationServices()
+            getCurrentAddress()
         } else {
             EasyPermissions.requestPermissions(
                 this,
@@ -328,7 +329,7 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
 
     override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
         requestLocationPermissions()
-        enableLocationServices()
+        getCurrentAddress()
     }
 
     override fun onRequestPermissionsResult(
@@ -340,23 +341,14 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
-    private fun enableLocationServices() {
-        if (SmartLocation.with(requireContext())
-                .location()
-                .state()
-                .locationServicesEnabled()
-                .not()
-        ) {
-            displayLocationSettingsRequest(99, requireActivity())
-        } else {
-            val location = getCurrentLocation()
-            val latLng = location?.let {
-                LatLng(it.latitude, it.longitude)
-            } ?: LatLng(DEFAULT_LAT, DEFAULT_LNG)
-            val addressList = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)[0]
-            val currentAddress = addressList.getAddressLine(0)
-            binding.etLocation.setText(currentAddress)
-        }
+    private fun getCurrentAddress() {
+        val location = getCurrentLocation()
+        val latLng = location?.let {
+            LatLng(it.latitude, it.longitude)
+        } ?: LatLng(DEFAULT_LAT, DEFAULT_LNG)
+        val addressList = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)[0]
+        val currentAddress = addressList.getAddressLine(0)
+        binding.etLocation.setText(currentAddress)
     }
 
     @SuppressLint("MissingPermission")

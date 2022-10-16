@@ -3,5 +3,6 @@
 
     <color name="text_color_primary">#FFFFFFFF</color>
     <color name="text_color_secondary">#FFFFFFFF</color>
+    <color name="bottom_nav_icon_color">#A4A7AC</color>
 
 </resources>

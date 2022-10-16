@@ -3,6 +3,8 @@ package com.example.hakaton.ui.partners
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Build
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +48,9 @@ class PartnersFragment : Fragment() {
     private fun setUpClickListeners() {
         binding.toolbar.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
+        }
+        partnersAdapter.setOnItemClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.url)))
         }
     }
 

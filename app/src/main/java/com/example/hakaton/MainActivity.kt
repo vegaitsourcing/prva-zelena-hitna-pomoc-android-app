@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.common.utils.KEY_HIDE_TOOLBAR
 import com.example.hakaton.databinding.ActivityMainBinding
+import com.example.hakaton.ui.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,11 +34,6 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        /*val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.navigation_home, R.id.navigation_news, R.id.navigation_partners, R.id.navigation_donate, R.id.navigation_contact)
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)*/
-
         navView.setupWithNavController(navController)
     }
 }

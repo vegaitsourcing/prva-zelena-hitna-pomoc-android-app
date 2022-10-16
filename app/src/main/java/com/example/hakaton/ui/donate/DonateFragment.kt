@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.hakaton.R
+import androidx.navigation.fragment.findNavController
 import com.example.hakaton.databinding.FragmentDonateBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,6 +35,15 @@ class DonateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         checkInternetConnection()
         loadDonationData()
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        binding.apply {
+            toolbar.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun loadDonationData() {
