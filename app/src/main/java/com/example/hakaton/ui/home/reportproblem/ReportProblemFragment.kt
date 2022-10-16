@@ -87,13 +87,11 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args: ReportProblemFragmentArgs by navArgs()
-        args?.let {
-            it.problem?.let { problem ->
-                viewModel.problem = problem
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Problem>("problem")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.problem = it
                 initViews()
             }
-        }
 
         initAdapter()
         reportProblem()
@@ -244,9 +242,12 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
         takePhoto.launch()
     }
 
-    private val takePhoto = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) {
+    private val takePhoto = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
         lifecycleScope.launch {
-            val isSavedSuccessfully = savePhotoToExternalStorage(UUID.randomUUID().toString(), it!!)
+            if (bitmap == null) {
+                return@launch
+            }
+            val isSavedSuccessfully = savePhotoToExternalStorage(UUID.randomUUID().toString(), bitmap)
             if(isSavedSuccessfully) Log.d(TAG, "Photo saved successfully")
             else Log.d(TAG, "Failed to save photo")
         }

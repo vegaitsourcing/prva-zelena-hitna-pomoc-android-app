@@ -59,6 +59,8 @@
             app:destination="@id/successfullyReportedFragment" />
         <action
             android:id="@+id/action_reportProblemFragment_to_selectCategoryFragment"
+            app:popUpTo="@navigation/mobile_navigation"
+            app:popUpToInclusive="true"
             app:destination="@id/selectCategoryFragment" />
         <argument
             android:name="problem"
@@ -88,6 +90,8 @@
         tools:layout="@layout/fragment_select_category" >
         <action
             android:id="@+id/action_selectCategoryFragment_to_reportProblemFragment"
+            app:popUpTo="@navigation/mobile_navigation"
+            app:popUpToInclusive="true"
             app:destination="@id/reportProblemFragment" />
         <argument
             android:name="problem"
