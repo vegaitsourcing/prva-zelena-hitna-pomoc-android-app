@@ -18,4 +18,6 @@
     <color name="text_color_secondary">#2F3742</color>
     <color name="textInput_border_color">#707070</color>
     <color name="icon_color">#1E6584</color>
+    <color name="bottom_nav_icon_color">#A4A7AC</color>
+    <color name="bottom_nav_icon_color_selected">#BBCF44</color>
 </resources>
