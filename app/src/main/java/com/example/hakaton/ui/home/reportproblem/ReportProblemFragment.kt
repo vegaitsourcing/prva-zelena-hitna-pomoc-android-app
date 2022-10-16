@@ -4,11 +4,13 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.location.Geocoder
 import android.location.Location
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -86,8 +88,9 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
 
         val args: ReportProblemFragmentArgs by navArgs()
         args?.let {
-            it.category?.let { category ->
-                binding.etCategory.setText(category.name)
+            it.problem?.let { problem ->
+                viewModel.problem = problem
+                initViews()
             }
         }
 
@@ -99,13 +102,25 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
         setUpClickListeners()
     }
 
+    private fun initViews() {
+        viewModel.problem.apply {
+            binding.apply {
+                etName.setText(userName)
+                etLocation.setText(location)
+                etCategory.setText(category)
+                etDescription.setText(description)
+            }
+        }
+    }
+
     private fun setUpClickListeners() {
         binding.apply {
             tilLocation.setEndIconOnClickListener {
                 requestLocationPermissions()
             }
             tilCategory.setEndIconOnClickListener {
-                view?.findNavController()?.navigate(ReportProblemFragmentDirections.actionReportProblemFragmentToSelectCategoryFragment())
+                createProblem()
+                view?.findNavController()?.navigate(ReportProblemFragmentDirections.actionReportProblemFragmentToSelectCategoryFragment(viewModel.problem))
             }
             toolbar.toolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
@@ -115,14 +130,19 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
 
     private fun reportProblem() {
         binding.btnReportProblem.setOnClickListener {
-            if (inputCheck()) viewModel.reportProblem(createProblem())
+            if (inputCheck()) checkInternetConnection()
             else Toast.makeText(requireActivity(), getString(R.string.text_invalid_input), Toast.LENGTH_SHORT).show()
         }
     }
 
+    private fun checkInternetConnection() {
+        if (isInternetConnected().not()) Toast.makeText(requireActivity(), getString(R.string.no_internet_connection), Toast.LENGTH_LONG).show()
+        else viewModel.reportProblem(createProblem())
+    }
+
     private fun createProblem() : Problem {
         binding.apply {
-            return Problem(
+            viewModel.problem = Problem(
                 id = UUID.randomUUID().toString(),
                 userName = if (checkboxReportPrivate.isChecked) "" else etName.text.toString(),
                 location = etLocation.text.toString(),
@@ -131,6 +151,7 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
                 media = "",
                 timestamp = getDate(),
             )
+            return viewModel.problem
         }
     }
 
@@ -348,6 +369,15 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
             }
         }
         return viewModel.currentLocation
+    }
+
+    private fun isInternetConnected(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            cm.activeNetwork != null && cm.getNetworkCapabilities(cm.activeNetwork) != null
+        } else {
+            cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnectedOrConnecting
+        }
     }
 
     override fun onDestroyView() {

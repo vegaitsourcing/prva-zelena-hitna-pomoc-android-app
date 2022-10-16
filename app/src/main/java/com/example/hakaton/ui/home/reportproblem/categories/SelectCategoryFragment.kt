@@ -1,16 +1,25 @@
 package com.example.hakaton.ui.home.reportproblem.categories
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hakaton.MainViewModel
+import com.example.hakaton.R
 import com.example.hakaton.databinding.FragmentSelectCategoryBinding
+import com.example.hakaton.ui.home.reportproblem.ReportProblemFragmentArgs
+import com.example.hakaton.ui.home.reportproblem.ReportProblemViewModel
 import com.example.hakaton.ui.home.reportproblem.categories.adapter.SelectCategoryAdapter
 
 class SelectCategoryFragment : Fragment() {
@@ -18,7 +27,8 @@ class SelectCategoryFragment : Fragment() {
     private var _binding: FragmentSelectCategoryBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by activityViewModels()
+    private val sharedViewModel: MainViewModel by activityViewModels()
+    private val viewModel: SelectCategoryViewModel by viewModels()
 
     private val categoryAdapter: SelectCategoryAdapter by lazy { SelectCategoryAdapter() }
 
@@ -33,6 +43,15 @@ class SelectCategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val args: SelectCategoryFragmentArgs by navArgs()
+        args?.let {
+            it.problem?.let { problem ->
+                viewModel.problem = problem
+            }
+        }
+
+        checkInternetConnection()
         initAdapter()
         loadCategories()
         selectCategory()
@@ -49,12 +68,15 @@ class SelectCategoryFragment : Fragment() {
 
     private fun selectCategory() {
         categoryAdapter.setOnItemClickListener { category ->
-            view?.findNavController()?.navigate(SelectCategoryFragmentDirections.actionSelectCategoryFragmentToReportProblemFragment(category))
+            viewModel.apply {
+                problem.category = category.name
+                view?.findNavController()?.navigate(SelectCategoryFragmentDirections.actionSelectCategoryFragmentToReportProblemFragment(problem))
+            }
         }
     }
 
     private fun loadCategories() {
-        viewModel.categories.observe(viewLifecycleOwner){ categories ->
+        sharedViewModel.categories.observe(viewLifecycleOwner){ categories ->
             categoryAdapter.differ.submitList(categories)
         }
     }
@@ -65,6 +87,19 @@ class SelectCategoryFragment : Fragment() {
                 layoutManager = LinearLayoutManager(requireActivity())
                 adapter = categoryAdapter
             }
+        }
+    }
+
+    private fun checkInternetConnection() {
+        if (isInternetConnected().not()) Toast.makeText(requireActivity(), getString(R.string.no_internet_connection), Toast.LENGTH_LONG).show()
+    }
+
+    private fun isInternetConnected(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            cm.activeNetwork != null && cm.getNetworkCapabilities(cm.activeNetwork) != null
+        } else {
+            cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnectedOrConnecting
         }
     }
 

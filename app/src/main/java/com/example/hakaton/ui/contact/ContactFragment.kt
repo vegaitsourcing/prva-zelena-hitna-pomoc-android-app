@@ -1,14 +1,19 @@
 package com.example.hakaton.ui.contact
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.hakaton.R
 import com.example.hakaton.databinding.FragmentContactBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,6 +35,7 @@ class ContactFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkInternetConnection()
         loadContactData()
         setUpListeners()
     }
@@ -54,6 +60,19 @@ class ContactFragment : Fragment() {
                     btnInstagram.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.facebookProfile))) }
                 }
             }
+        }
+    }
+
+    private fun checkInternetConnection() {
+        if (isInternetConnected().not()) Toast.makeText(requireActivity(), getString(R.string.no_internet_connection), Toast.LENGTH_LONG).show()
+    }
+
+    private fun isInternetConnected(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            cm.activeNetwork != null && cm.getNetworkCapabilities(cm.activeNetwork) != null
+        } else {
+            cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnectedOrConnecting
         }
     }
 

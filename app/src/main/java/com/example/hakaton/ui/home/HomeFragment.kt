@@ -1,18 +1,24 @@
 package com.example.hakaton.ui.home
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.common.utils.NUM_OF_COLUMNS
 import com.example.hakaton.MainViewModel
+import com.example.hakaton.R
 import com.example.hakaton.databinding.FragmentHomeBinding
 import com.example.hakaton.ui.home.adapter.HomeCategoryAdapter
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -36,6 +42,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkInternetConnection()
         initAdapter()
         loadCategories()
         reportProblem()
@@ -73,6 +80,19 @@ class HomeFragment : Fragment() {
                 layoutManager = GridLayoutManager(requireActivity(), NUM_OF_COLUMNS)
                 adapter = categoryAdapter
             }
+        }
+    }
+
+    private fun checkInternetConnection() {
+        if (isInternetConnected().not()) Toast.makeText(requireActivity(), getString(R.string.no_internet_connection), Toast.LENGTH_LONG).show()
+    }
+
+    private fun isInternetConnected(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            cm.activeNetwork != null && cm.getNetworkCapabilities(cm.activeNetwork) != null
+        } else {
+            cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnectedOrConnecting
         }
     }
 

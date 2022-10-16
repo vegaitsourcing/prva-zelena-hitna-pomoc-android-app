@@ -1,7 +1,10 @@
 package com.example.hakaton.ui.home.categories
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +51,8 @@ class CategoryFragment : Fragment() {
                 initViews()
             }
         }
+
+        checkInternetConnection()
         openSubcategoryUrl()
         setUpListeners()
     }
@@ -90,6 +95,19 @@ class CategoryFragment : Fragment() {
                 layoutManager = LinearLayoutManager(requireActivity())
                 adapter = categoryAdapter
             }
+        }
+    }
+
+    private fun checkInternetConnection() {
+        if (isInternetConnected().not()) Toast.makeText(requireActivity(), getString(R.string.no_internet_connection), Toast.LENGTH_LONG).show()
+    }
+
+    private fun isInternetConnected(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            cm.activeNetwork != null && cm.getNetworkCapabilities(cm.activeNetwork) != null
+        } else {
+            cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnectedOrConnecting
         }
     }
 

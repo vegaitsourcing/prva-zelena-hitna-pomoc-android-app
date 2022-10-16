@@ -1,7 +1,10 @@
 package com.example.hakaton.ui.home.wastedisposal
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,6 +41,7 @@ class WasteDisposalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkInternetConnection()
         initAdapter()
         setUpListeners()
         loadWasteDisposalDetails()
@@ -80,6 +84,19 @@ class WasteDisposalFragment : Fragment() {
                 layoutManager = LinearLayoutManager(requireActivity())
                 adapter = wasteDisposalAdapter
             }
+        }
+    }
+
+    private fun checkInternetConnection() {
+        if (isInternetConnected().not()) Toast.makeText(requireActivity(), getString(R.string.no_internet_connection), Toast.LENGTH_LONG).show()
+    }
+
+    private fun isInternetConnected(): Boolean {
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            cm.activeNetwork != null && cm.getNetworkCapabilities(cm.activeNetwork) != null
+        } else {
+            cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnectedOrConnecting
         }
     }
 

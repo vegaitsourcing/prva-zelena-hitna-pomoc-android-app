@@ -61,9 +61,9 @@
             android:id="@+id/action_reportProblemFragment_to_selectCategoryFragment"
             app:destination="@id/selectCategoryFragment" />
         <argument
-            android:name="category"
+            android:name="problem"
             app:nullable="true"
-            app:argType="com.example.common.models.home.categories.Category" />
+            app:argType="com.example.common.models.home.reportproblem.Problem" />
     </fragment>
 
     <fragment
@@ -89,6 +89,9 @@
         <action
             android:id="@+id/action_selectCategoryFragment_to_reportProblemFragment"
             app:destination="@id/reportProblemFragment" />
+        <argument
+            android:name="problem"
+            app:argType="com.example.common.models.home.reportproblem.Problem" />
     </fragment>
     <fragment
         android:id="@+id/fullNewsFragment"

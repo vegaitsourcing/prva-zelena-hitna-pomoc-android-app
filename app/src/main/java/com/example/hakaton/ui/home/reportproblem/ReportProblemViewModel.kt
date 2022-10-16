@@ -3,9 +3,7 @@ package com.example.hakaton.ui.home.reportproblem
 import android.location.Location
 import android.net.Uri
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.common.models.home.reportproblem.Problem
 import com.example.common.utils.DataState
 import com.example.common.utils.TAG
@@ -22,6 +20,9 @@ class ReportProblemViewModel
 
     private val _problemReported = MutableLiveData<String?>()
     val problemReported: MutableLiveData<String?> get() = _problemReported
+
+    var problem: Problem = Problem()
+
     var currentLocation: Location? = null
 
     var mediaFiles: ArrayList<Uri> = ArrayList()

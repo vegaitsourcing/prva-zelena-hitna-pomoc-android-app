@@ -65,4 +65,5 @@
     <string name="enable_location">Enable Location to use the app</string>
 
     <string name="toast_error">Došlo je do greške</string>
+    <string name="no_internet_connection">Nema interneta</string>
 </resources>
