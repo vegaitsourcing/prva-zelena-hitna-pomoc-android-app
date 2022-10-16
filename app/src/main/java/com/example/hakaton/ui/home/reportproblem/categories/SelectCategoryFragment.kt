@@ -70,7 +70,10 @@ class SelectCategoryFragment : Fragment() {
         categoryAdapter.setOnItemClickListener { category ->
             viewModel.apply {
                 problem.category = category.name
-                view?.findNavController()?.navigate(SelectCategoryFragmentDirections.actionSelectCategoryFragmentToReportProblemFragment(problem))
+                view?.findNavController()?.apply {
+                    previousBackStackEntry?.savedStateHandle?.set("problem", problem)
+                    popBackStack()
+                }
             }
         }
     }

@@ -52,8 +52,8 @@
 
     <ImageView
         android:id="@+id/image_successfully_reported"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         app:layout_constraintTop_toBottomOf="@id/text_successfully_reported_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

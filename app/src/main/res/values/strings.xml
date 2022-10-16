@@ -26,7 +26,8 @@
     <string name="text_report_problem">Prijavi problem</string>
     <string name="text_report_private">Želim da prijavim anonimno</string>
     <string name="text_successfully_reported_title">Uspešno ste prijavili problem!</string>
-    <string name="text_successfully_reported_description">Vaša prijava je prosledjena zaduženoj instituciji. Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.</string>
+    <string name="text_successfully_reported_description">Vaša prijava je uspesno prosledjena zaduženoj instituciji. Hvala Vamna pomoci da zajedno podignemo nivo ekološke kulture i svesti i  formiramo funkcionalan i i održiv sistem zaštite životne sredine. Zajedno do ekološki, čiste i zdrave životne sredine!
+    </string>
     <string name="et_hint_name">Ime i Prezime</string>a
     <string name="et_hint_location">Lokacija problema koji prijavljujete</string>
     <string name="et_hint_category">Kategorija</string>
