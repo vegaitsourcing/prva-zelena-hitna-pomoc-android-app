@@ -1,6 +1,7 @@
 package com.example.common.utils
 
 const val FIREBASE_DATABASE_CATEGORIES = "Categories"
+const val FIREBASE_DATABASE_WASTE_DISPOSAL= "Waste Disposal"
 const val FIREBASE_DATABASE_PROBLEMS = "Problems"
 const val FIREBASE_DATABASE_NEWS = "News"
 const val FIREBASE_DATABASE_DONATION = "Donation"

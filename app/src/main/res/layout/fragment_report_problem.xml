@@ -154,6 +154,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/text_color_primary"
+                android:focusable="false"
+                android:clickable="false"
+                android:cursorVisible="false"
                 android:background="@drawable/bordered_textfield"/>
 
         </com.google.android.material.textfield.TextInputLayout>

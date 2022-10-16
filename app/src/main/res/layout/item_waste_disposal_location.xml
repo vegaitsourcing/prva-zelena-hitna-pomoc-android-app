@@ -6,7 +6,7 @@
     android:padding="10sp">
 
     <RelativeLayout
-        android:id="@+id/btn_subcategory"
+        android:id="@+id/btn_waste_disposal_location"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
             android:src="@drawable/rounded_button" />
 
         <TextView
-            android:id="@+id/text_subcategory_name"
+            android:id="@+id/text_waste_disposal_location_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

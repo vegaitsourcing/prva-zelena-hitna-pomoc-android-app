@@ -101,11 +101,16 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
     }
 
     private fun setUpClickListeners() {
-        binding.tilLocation.setEndIconOnClickListener {
-            requestLocationPermissions()
-        }
-        binding.toolbar.toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+        binding.apply {
+            tilLocation.setEndIconOnClickListener {
+                requestLocationPermissions()
+            }
+            tilCategory.setEndIconOnClickListener {
+                view?.findNavController()?.navigate(ReportProblemFragmentDirections.actionReportProblemFragmentToSelectCategoryFragment())
+            }
+            toolbar.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
