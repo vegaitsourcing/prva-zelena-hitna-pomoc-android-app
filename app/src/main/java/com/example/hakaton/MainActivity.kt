@@ -5,6 +5,7 @@ import android.view.View
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         installSplashScreen().apply {
             setKeepOnScreenCondition {
                 viewModel.showSplash.value!!

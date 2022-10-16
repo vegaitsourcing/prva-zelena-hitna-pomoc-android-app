@@ -4,10 +4,13 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.text.color
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.hakaton.R
@@ -51,7 +54,13 @@ class DonateFragment : Fragment() {
             binding.apply {
                 donationDetails?.let {
                     textDonateDescription.text = donationDetails.description
-                    textBankAccountNumber.text = "${textBankAccountNumber.text}: ${donationDetails.cardNumber} "
+                    val cardNumberColor = ContextCompat.getColor(requireActivity(), R.color.text_desc_color)
+                    val cardNumberText = SpannableStringBuilder()
+                        .append(textBankAccountNumber.text)
+                        .append(": ")
+                        .color(cardNumberColor) { append(donationDetails.cardNumber) }
+
+                    textBankAccountNumber.text = cardNumberText
                 }
             }
         }

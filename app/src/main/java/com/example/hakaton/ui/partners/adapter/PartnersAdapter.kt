@@ -55,7 +55,6 @@ class PartnersAdapter : RecyclerView.Adapter<PartnersAdapter.PartnersViewHolder>
                 Glide.with(imagePartnerLogo)
                     .load(partner.logo)
                     .placeholder(R.drawable.ic_thumb)
-                    .centerCrop()
                     .into(imagePartnerLogo)
             }
         }

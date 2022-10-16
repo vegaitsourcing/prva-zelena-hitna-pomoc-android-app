@@ -39,6 +39,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/donate_bank_account_number"
         android:textColor="@color/text_color_secondary"
+        android:textSize="@dimen/text_description_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_donate_title"/>
 

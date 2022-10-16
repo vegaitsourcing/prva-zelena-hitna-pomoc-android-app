@@ -19,12 +19,14 @@
             android:id="@+id/image_partner_logo"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_marginStart="10dp"
+            android:adjustViewBounds="true"
             android:padding="10dp"
-            android:background="@drawable/partner_logo_thumb"
-            app:shapeAppearanceOverlay="@style/roundedImage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:shapeAppearanceOverlay="@style/roundedImage" />
 
         <TextView
             android:id="@+id/text_partner_city"
