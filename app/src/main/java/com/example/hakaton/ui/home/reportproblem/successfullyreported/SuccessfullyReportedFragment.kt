@@ -34,7 +34,7 @@ class SuccessfullyReportedFragment : Fragment() {
     private fun handleOnBackPressed() {
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().popBackStack(R.id.navigation_home, true)
+                findNavController().popBackStack(R.id.navigation_home, false)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
@@ -43,7 +43,7 @@ class SuccessfullyReportedFragment : Fragment() {
     private fun setUpListeners() {
         binding.apply {
             toolbar.toolbar.setNavigationOnClickListener {
-                findNavController().popBackStack(R.id.navigation_home, true)
+                findNavController().popBackStack(R.id.navigation_home, false)
             }
         }
     }
