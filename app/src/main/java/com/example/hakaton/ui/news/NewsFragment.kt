@@ -144,6 +144,7 @@ class NewsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        newsAdapter.originalList.clear()
         _binding = null
     }
 }

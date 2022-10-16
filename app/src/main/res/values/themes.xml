@@ -17,4 +17,7 @@
         <item name="colorPrimary">@color/bottom_nav_icon_color_selected</item>
         <item name="android:textColorSecondary">@color/bottom_nav_icon_color</item>
     </style>
+    <style name="roundedImage">
+        <item name="cornerSize">10%</item>
+    </style>
 </resources>

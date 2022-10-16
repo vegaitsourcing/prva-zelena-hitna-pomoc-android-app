@@ -48,37 +48,40 @@
         android:id="@+id/text_phone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_contact_description"
         android:layout_marginTop="50sp"
         android:text="@string/contact_phone_number"
+        android:textColor="@color/contacts_text_color"
         android:textSize="@dimen/text_contacts"
         android:textStyle="bold"
-        android:textColor="@color/contacts_text_color"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_contact_description" />
 
     <TextView
         android:id="@+id/text_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_phone_number"
         android:text="@string/contact_email"
+        android:textColor="@color/contacts_text_color"
         android:textSize="@dimen/text_contacts"
         android:textStyle="bold"
-        android:textColor="@color/contacts_text_color"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_phone_number" />
 
     <TextView
         android:id="@+id/text_web_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_email"
         android:text="@string/contact_web"
+        android:textColor="@color/contacts_text_color"
         android:textSize="@dimen/text_contacts"
         android:textStyle="bold"
-        android:textColor="@color/contacts_text_color"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_email" />
 
     <ImageView
         android:id="@+id/btn_facebook"
