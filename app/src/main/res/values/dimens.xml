@@ -8,4 +8,5 @@
     <dimen name="text_category_name_home">12sp</dimen>
     <dimen name="text_contacts">20sp</dimen>
     <dimen name="text_select_category_size">14sp</dimen>
+    <dimen name="category_icon_size">26sp</dimen>
 </resources>

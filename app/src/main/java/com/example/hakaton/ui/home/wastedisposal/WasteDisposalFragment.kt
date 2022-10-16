@@ -7,10 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hakaton.R
 import com.example.hakaton.databinding.FragmentWasteDisposalBinding
 import com.example.hakaton.ui.home.wastedisposal.adater.WasteDisposalAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +54,11 @@ class WasteDisposalFragment : Fragment() {
 
     private fun showLocation() {
         wasteDisposalAdapter.setOnItemClickListener { location ->
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(location.url)))
+            if (location.url.contains("http")) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(location.url)))
+            } else {
+                Toast.makeText(requireActivity(), getString(R.string.toast_error), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

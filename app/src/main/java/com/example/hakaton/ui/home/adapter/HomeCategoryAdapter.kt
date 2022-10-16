@@ -50,7 +50,6 @@ class HomeCategoryAdapter : RecyclerView.Adapter<HomeCategoryAdapter.CategoryVie
                 Glide.with(imageCategory)
                     .load(category.image)
                     .placeholder(R.drawable.ic_thumb)
-                    .centerCrop()
                     .into(imageCategory)
 
                 root.setOnClickListener {

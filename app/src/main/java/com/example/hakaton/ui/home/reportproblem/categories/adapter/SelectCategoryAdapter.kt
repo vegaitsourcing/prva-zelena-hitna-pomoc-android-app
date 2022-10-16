@@ -50,7 +50,6 @@ class SelectCategoryAdapter : RecyclerView.Adapter<SelectCategoryAdapter.Categor
                 Glide.with(imageCategory)
                     .load(category.image)
                     .placeholder(R.drawable.ic_thumb)
-                    .centerCrop()
                     .into(imageCategory)
 
                 root.setOnClickListener {
