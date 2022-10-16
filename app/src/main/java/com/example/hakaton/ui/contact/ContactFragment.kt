@@ -56,8 +56,12 @@ class ContactFragment : Fragment() {
                     textPhoneNumber.text = "${textPhoneNumber.text}: ${contact.phoneNumber}"
                     textEmail.text = "${textEmail.text}: ${contact.email}"
                     textWebPage.text = "${textWebPage.text}: ${contact.webAddress}"
-                    btnInstagram.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.instagramProfile))) }
-                    btnFacebook.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.facebookProfile))) }
+                    if (contact.facebookProfile.contains("http")) {
+                        btnFacebook.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.facebookProfile))) }
+                    }
+                    if (contact.instagramProfile.contains("http")) {
+                        btnInstagram.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.instagramProfile))) }
+                    }
                 }
             }
         }
