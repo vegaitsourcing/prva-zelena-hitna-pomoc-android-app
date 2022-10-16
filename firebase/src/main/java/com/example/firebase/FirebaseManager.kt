@@ -6,6 +6,7 @@ import com.example.common.models.contact.Contact
 import com.example.common.models.donation.Donation
 import com.example.common.models.home.categories.Category
 import com.example.common.models.home.reportproblem.Problem
+import com.example.common.models.home.wastedisposal.WasteDisposal
 import com.example.common.models.news.News
 import com.example.common.models.partners.PartnerDetails
 import com.example.common.utils.*
@@ -32,6 +33,20 @@ class FirebaseManager @Inject constructor() {
                 GenericTypeIndicator<List<Category>>() {})
             value?.let { categories ->
                 emit(DataState.Success(categories))
+            }
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+        }
+    }
+
+    fun getWasteDisposalLocations(): Flow<DataState<WasteDisposal>> = flow {
+        emit(DataState.Loading)
+        try {
+            val myQuery = database.child(FIREBASE_DATABASE_WASTE_DISPOSAL).get().await()
+            val value = myQuery.getValue(object :
+                GenericTypeIndicator<WasteDisposal>() {})
+            value?.let { wasteDisposalDetails ->
+                emit(DataState.Success(wasteDisposalDetails))
             }
         } catch (e: Exception) {
             emit(DataState.Error(e))

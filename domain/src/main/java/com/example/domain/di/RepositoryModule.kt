@@ -8,6 +8,8 @@ import com.example.domain.home.categories.CategoryRepository
 import com.example.domain.home.categories.CategoryRepositoryImpl
 import com.example.domain.home.reportproblem.ProblemRepository
 import com.example.domain.home.reportproblem.ProblemRepositoryImpl
+import com.example.domain.home.wastedisposal.WasteDisposalRepository
+import com.example.domain.home.wastedisposal.WasteDisposalRepositoryImpl
 import com.example.domain.news.NewsRepository
 import com.example.domain.news.NewsRepositoryImpl
 import com.example.domain.partners.PartnersRepository
@@ -37,6 +39,14 @@ object RepositoryModule {
         firebaseManager: FirebaseManager
     ) : ProblemRepository {
         return ProblemRepositoryImpl(firebaseManager)
+    }
+
+    @Provides
+    @Singleton
+    fun provideWasteDisposalRepository(
+        firebaseManager: FirebaseManager
+    ) : WasteDisposalRepository {
+        return WasteDisposalRepositoryImpl(firebaseManager)
     }
 
     @Provides

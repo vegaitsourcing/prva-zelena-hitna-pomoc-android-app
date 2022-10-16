@@ -61,7 +61,7 @@ class CategoryFragment : Fragment() {
 
     private fun openSubcategoryUrl() {
         categoryAdapter.setOnItemClickListener { subcategory ->
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))) //subcategory.url
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(subcategory.url)))
         }
     }
 

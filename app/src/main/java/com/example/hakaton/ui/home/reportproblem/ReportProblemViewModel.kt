@@ -35,7 +35,7 @@ class ReportProblemViewModel
                     }
                     is DataState.Success -> {
                         Log.d(TAG, "reportProblem - Success: ${problemID.data}")
-                        uploadProblemMedia(problemID.data)
+                        //uploadProblemMedia(problemID.data)
                         _problemReported.postValue(problemID.data)
                     }
                     is DataState.Error -> {

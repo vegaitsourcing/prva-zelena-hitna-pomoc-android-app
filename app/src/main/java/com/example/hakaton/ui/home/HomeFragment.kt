@@ -40,6 +40,7 @@ class HomeFragment : Fragment() {
         loadCategories()
         reportProblem()
         openCategory()
+        openWasteDisposal()
     }
 
     private fun loadCategories() {
@@ -57,6 +58,12 @@ class HomeFragment : Fragment() {
     private fun openCategory() {
         categoryAdapter.setOnItemClickListener { category ->
             view?.findNavController()?.navigate(HomeFragmentDirections.actionNavigationHomeToCategoryFragment(category))
+        }
+    }
+
+    private fun openWasteDisposal() {
+        binding.btnShowWasteMap.setOnClickListener {
+            view?.findNavController()?.navigate(HomeFragmentDirections.actionNavigationHomeToWasteDisposalFragment())
         }
     }
 

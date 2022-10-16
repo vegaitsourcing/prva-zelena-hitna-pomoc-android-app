@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_wasteDisposalFragment"
+            app:destination="@id/wasteDisposalFragment" />
     </fragment>
 
     <fragment
@@ -96,5 +99,10 @@
             android:name="news"
             app:argType="com.example.common.models.news.News" />
     </fragment>
+    <fragment
+        android:id="@+id/wasteDisposalFragment"
+        android:name="com.example.hakaton.ui.home.wastedisposal.WasteDisposalFragment"
+        android:label="fragment_waste_disposal"
+        tools:layout="@layout/fragment_waste_disposal" />
 
 </navigation>
