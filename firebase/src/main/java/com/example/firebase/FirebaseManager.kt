@@ -63,30 +63,32 @@ class FirebaseManager @Inject constructor() {
         }
     }
 
-    fun uploadImagesToStorage(uri: Uri, problemId: String) {
-        //emit(DataState.Loading)
-        val problemRef = storageRef.child("$STORAGE_IMAGES/$STORAGE_PROBLEM_REPORT_IMAGES/${problemId}/${uri.lastPathSegment}")
-        val uploadTask = problemRef.putFile(uri)
-        uploadTask.addOnSuccessListener {
-            val downloadUrl = problemRef.downloadUrl
-            downloadUrl.addOnSuccessListener {
-                Log.d(TAG, "uploadImagesToStorage - Success")
-                //emit(DataState.Success(it))
-                updateImagesInDatabase(it, problemId)
+    fun uploadImagesToStorage(mediaFiles: ArrayList<Uri>, problemId: String) {
+        var imagesURL: ArrayList<String> = ArrayList()
+        for (file in mediaFiles) {
+            val problemRef =
+                storageRef.child("$STORAGE_IMAGES/$STORAGE_PROBLEM_REPORT_IMAGES/${problemId}/${file.lastPathSegment}")
+            val uploadTask = problemRef.putFile(file)
+            uploadTask.addOnSuccessListener {
+                val downloadUrl = problemRef.downloadUrl
+                downloadUrl.addOnSuccessListener {
+                    Log.d(TAG, "uploadImagesToStorage - Success")
+                    imagesURL.add(it.toString())
+                    updateImagesInDatabase(imagesURL, problemId)
+                }
             }
-        }
-        uploadTask.addOnFailureListener {
-            Log.d(TAG, "uploadImagesToStorage - Error")
-            //emit(DataState.Error(it))
+            uploadTask.addOnFailureListener {
+                Log.d(TAG, "uploadImagesToStorage - Error: $it")
+            }
         }
     }
 
-    private fun updateImagesInDatabase(uri: Uri?, problemId: String) {
-        database.child(FIREBASE_DATABASE_PROBLEMS).child(problemId).child("media").setValue(uri.toString())
+    private fun updateImagesInDatabase(imagesURL: ArrayList<String>, problemId: String) {
+        database.child(FIREBASE_DATABASE_PROBLEMS).child(problemId).child("imagesURL").setValue(imagesURL)
             .addOnSuccessListener {
                 Log.d(TAG, "updateImagesInDatabase - Success")
             }.addOnFailureListener {
-                Log.d(TAG, "updateImagesInDatabase - Error")
+                Log.d(TAG, "updateImagesInDatabase - Error: $it")
             }
     }
 

@@ -9,5 +9,5 @@ interface ProblemRepository {
 
     suspend fun reportProblem(problem: Problem): Flow<DataState<String>>
 
-    fun uploadImagesToStorage(uri: Uri, problemId: String)
+    fun uploadImagesToStorage(mediaFiles: ArrayList<Uri>, problemId: String)
 }

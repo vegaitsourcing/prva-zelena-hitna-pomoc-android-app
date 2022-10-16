@@ -6,8 +6,8 @@ data class Problem(
     val location: String,
     var category: String,
     val description: String,
-    val media: String,
+    val imagesURL: ArrayList<String> =  ArrayList(),
     val timestamp: String,
 ) : java.io.Serializable {
-    constructor() : this(id = "", userName = "", location = "", category = "", description = "", media = "", timestamp = "")
+    constructor() : this(id = "", userName = "", location = "", category = "", description = "", timestamp = "")
 }

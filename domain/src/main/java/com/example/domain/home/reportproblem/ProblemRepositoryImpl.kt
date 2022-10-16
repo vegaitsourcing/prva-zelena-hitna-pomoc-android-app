@@ -14,7 +14,7 @@ class ProblemRepositoryImpl
 
     override suspend fun reportProblem(problem: Problem): Flow<DataState<String>> = firebaseManager.addProblem(problem)
 
-    override fun uploadImagesToStorage(uri: Uri, problemId: String) {
-        firebaseManager.uploadImagesToStorage(uri, problemId)
+    override fun uploadImagesToStorage(mediaFiles: ArrayList<Uri>, problemId: String) {
+        firebaseManager.uploadImagesToStorage(mediaFiles, problemId)
     }
 }
