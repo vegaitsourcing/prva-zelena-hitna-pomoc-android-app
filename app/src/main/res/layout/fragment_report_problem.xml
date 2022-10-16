@@ -8,7 +8,6 @@
     android:fillViewport="true"
     tools:context=".ui.home.reportproblem.ReportProblemFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -185,55 +184,67 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_description"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="150sp"
                 android:background="@drawable/bordered_textfield"
                 android:gravity="top|start"
                 android:textColor="@color/text_color_primary" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/text_add_photo"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_media"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_report_problem_photo_video"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_open_gallery"
-            app:layout_constraintBottom_toBottomOf="@id/btn_open_gallery"
-            app:layout_constraintEnd_toStartOf="@id/btn_open_gallery"/>
-
-        <ImageView
-            android:id="@+id/btn_open_gallery"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginEnd="10sp"
-            android:layout_marginTop="6dp"
-            android:src="@drawable/image"
-            app:layout_constraintEnd_toStartOf="@+id/btn_open_camera"
-            app:layout_constraintTop_toBottomOf="@+id/til_description" />
-
-        <ImageView
-            android:id="@+id/btn_open_camera"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginTop="6dp"
-            android:src="@drawable/video"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_description" />
+            app:layout_constraintTop_toBottomOf="@+id/til_description"
+            app:layout_constraintBottom_toTopOf="@id/recycler_media_files">
+
+            <TextView
+                android:id="@+id/text_add_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_report_problem_photo_video"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_open_gallery"/>
+
+            <ImageView
+                android:id="@+id/btn_open_gallery"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/image"
+                app:layout_constraintEnd_toStartOf="@+id/btn_open_camera"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:id="@+id/btn_open_camera"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/video"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_media_files"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10sp"
             android:layout_marginTop="10sp"
-            android:padding="12dp"
             android:visibility="gone"
             android:background="@drawable/bordered_textfield"
             app:layout_constraintBottom_toTopOf="@id/btn_report_problem"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_open_gallery" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_media" />
 
         <RelativeLayout
             android:id="@+id/btn_report_problem"

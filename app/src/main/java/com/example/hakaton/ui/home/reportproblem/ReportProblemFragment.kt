@@ -58,6 +58,7 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermissions.PermissionCallbacks {
@@ -147,7 +148,7 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
                 location = etLocation.text.toString(),
                 category = etCategory.text.toString(),
                 description = etDescription.text.toString(),
-                media = "",
+                imagesURL = ArrayList(),
                 timestamp = getDate(),
             )
             return viewModel.problem
@@ -156,7 +157,7 @@ class ReportProblemFragment : Fragment(), IOnMediaFileClickListener, EasyPermiss
 
     private fun inputCheck() : Boolean {
         binding.apply {
-            return etName.text.toString().isNotEmpty() && etLocation.text.toString().isNotEmpty() && etCategory.text.toString().isNotEmpty() && etDescription.text.toString().isNotEmpty()
+            return etLocation.text.toString().isNotEmpty() && etCategory.text.toString().isNotEmpty() && etDescription.text.toString().isNotEmpty()
         }
     }
 

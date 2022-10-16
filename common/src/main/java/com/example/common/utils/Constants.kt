@@ -9,7 +9,7 @@ const val FIREBASE_DATABASE_PARTNERS = "Partners"
 const val FIREBASE_DATABASE_CONTACTS = "Contact"
 
 const val STORAGE_IMAGES = "images"
-const val STORAGE_PROBLEM_REPORT_IMAGES = "problemReports"
+const val STORAGE_PROBLEM_REPORT_IMAGES = "Problems"
 
 const val NUM_OF_COLUMNS = 3
 

@@ -36,7 +36,7 @@ class ReportProblemViewModel
                     }
                     is DataState.Success -> {
                         Log.d(TAG, "reportProblem - Success: ${problemID.data}")
-                        //uploadProblemMedia(problemID.data)
+                        uploadProblemMedia(problemID.data)
                         _problemReported.postValue(problemID.data)
                     }
                     is DataState.Error -> {
@@ -50,6 +50,6 @@ class ReportProblemViewModel
     }
 
     private fun uploadProblemMedia(problemId: String) {
-        repository.uploadImagesToStorage(mediaFiles[0], problemId = problemId) //optimizuj za listu!
+        repository.uploadImagesToStorage(mediaFiles, problemId = problemId)
     }
 }
