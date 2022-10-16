@@ -185,7 +185,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_description"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="150sp"
                 android:background="@drawable/bordered_textfield"
                 android:gravity="top|start"
                 android:textColor="@color/text_color_primary" />
@@ -210,7 +210,8 @@
             android:layout_marginTop="6dp"
             android:src="@drawable/image"
             app:layout_constraintEnd_toStartOf="@+id/btn_open_camera"
-            app:layout_constraintTop_toBottomOf="@+id/til_description" />
+            app:layout_constraintTop_toBottomOf="@+id/til_description"
+            app:layout_constraintBottom_toTopOf="@id/btn_report_problem"/>
 
         <ImageView
             android:id="@+id/btn_open_camera"
@@ -219,7 +220,8 @@
             android:layout_marginTop="6dp"
             android:src="@drawable/video"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_description" />
+            app:layout_constraintTop_toBottomOf="@+id/til_description"
+            app:layout_constraintBottom_toTopOf="@id/btn_report_problem"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_media_files"
