@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:text="@string/fragment_contact_title"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color_primary"
         android:textSize="@dimen/text_title_size"/>
 
     <TextView
@@ -60,6 +60,7 @@
         android:id="@+id/text_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_phone_number"
         android:text="@string/contact_email"
@@ -71,6 +72,7 @@
         android:id="@+id/text_web_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_email"
         android:text="@string/contact_web"
@@ -79,22 +81,22 @@
         android:textColor="@color/contacts_text_color"/>
 
     <ImageView
-        android:id="@+id/btn_instagram"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:layout_marginTop="20sp"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_facebook"
-        app:layout_constraintTop_toBottomOf="@id/text_web_page"/>
-
-    <ImageView
         android:id="@+id/btn_facebook"
         android:layout_width="50sp"
         android:layout_height="50sp"
         android:layout_marginTop="20sp"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintStart_toEndOf="@id/btn_instagram"
+        android:src="@drawable/facebook_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_instagram"
+        app:layout_constraintTop_toBottomOf="@id/text_web_page"/>
+
+    <ImageView
+        android:id="@+id/btn_instagram"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="20sp"
+        android:src="@drawable/instagram_logo"
+        app:layout_constraintStart_toEndOf="@id/btn_facebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_web_page"/>
 

@@ -51,7 +51,7 @@ class ContactFragment : Fragment() {
                     textEmail.text = "${textEmail.text}: ${contact.email}"
                     textWebPage.text = "${textWebPage.text}: ${contact.webAddress}"
                     btnInstagram.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.instagramProfile))) }
-                    btnInstagram.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.facebookProfile))) }
+                    btnFacebook.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(contact.facebookProfile))) }
                 }
             }
         }
