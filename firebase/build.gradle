@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.firebase'
+    namespace 'com.zelenikljuc.firebase'
     compileSdk 32
 
     defaultConfig {

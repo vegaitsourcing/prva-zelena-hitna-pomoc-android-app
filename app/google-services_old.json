@@ -85,42 +85,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:154797654489:android:5c392f2598ad12f56059c8",
-        "android_client_info": {
-          "package_name": "org.zelenikljuc.prvazelenahitnapomoc"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "154797654489-t4rgrov8qu28lduai1em275v65fmkvqj.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDFTOcf4DkzrGGlj1ez8Gu7jWovuodAGpI"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "154797654489-t4rgrov8qu28lduai1em275v65fmkvqj.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "154797654489-54tlf7dp5c5mq00gp9qj7d72dgh6s7a0.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.GreenIos"
-              }
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"
